@@ -7,6 +7,11 @@ yarn-error.log*
 lerna-debug.log*
 accounts.json
 accounts01.json
+accounts02.json
+accounts03.json
+accounts04.json
+accounts05.json
+ethscan-scrape-res.json
 targets.json
 balances.json
 # Diagnostic reports (https://nodejs.org/api/report.html)

@@ -2,9 +2,9 @@ import axios from 'axios';
 import * as fs from 'fs';
 let hasTransactionsjson = fs.readFileSync('acounts-with-txs.json', 'utf-8');
 let hasTransactions = JSON.parse(hasTransactionsjson);
-let accountsjson = fs.readFileSync('accounts01.json', 'utf-8');
+let accountsjson = fs.readFileSync('accounts05.json', 'utf-8');
 const addresses = JSON.parse(accountsjson);
-let index = 11643;
+let index = 0;
 function getTransactions() {
   if (index > addresses.length) return;
   try {
@@ -34,7 +34,7 @@ function getTransactions() {
       })
       .catch((error) => console.log(error.response.data.error));
   } catch (error) {
-    console.log(error.data);
+    console.log(error);
   }
 
   setTimeout(getTransactions, 300);
