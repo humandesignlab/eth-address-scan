@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
+    "find-dup-r": "node ./src/dup-r-finder/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
