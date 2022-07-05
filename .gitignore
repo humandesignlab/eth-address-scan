@@ -5,15 +5,11 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
-accounts.json
-accounts01.json
-accounts02.json
-accounts03.json
-accounts04.json
-accounts05.json
 ethscan-scrape-res.json
+r-duplicates.json
 targets.json
 balances.json
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
@@ -48,6 +44,10 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+
+# Data
+src/data/
+src/merged-data/
 
 # TypeScript v1 declaration files
 typings/

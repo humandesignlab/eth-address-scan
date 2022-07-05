@@ -3,7 +3,7 @@ import Web3 from 'web3';
 const web3 = new Web3('ws://localhost:8545');
 
 import * as fs from 'fs';
-let accountsjson = fs.readFileSync('accounts11.json', 'utf-8');
+let accountsjson = fs.readFileSync('./src/data/accounts14.json', 'utf-8');
 let accounts = JSON.parse(accountsjson);
 let targetsjson = fs.readFileSync('targets.json', 'utf-8');
 let targets = JSON.parse(targetsjson);
@@ -34,7 +34,7 @@ export async function comb() {
       balance: addressBalance,
     });
     accountsjson = JSON.stringify(accounts);
-    fs.writeFileSync('accounts11.json', accountsjson, 'utf-8');
+    fs.writeFileSync('./src/data/accounts14.json', accountsjson, 'utf-8');
   }
 
   setTimeout(comb, 3000);
