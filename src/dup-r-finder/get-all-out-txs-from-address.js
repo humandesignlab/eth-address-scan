@@ -8,7 +8,7 @@ async function getOutTxsByAddress(address) {
     .then((response) => {
       const outTxsArr = response.data.result
         .map((item) => {
-          if (item.from === address) {
+          if (item.from.toUpperCase() === address.toUpperCase()) {
             return item.hash;
           } else {
             return null;

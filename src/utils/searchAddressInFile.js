@@ -1,4 +1,6 @@
 import * as fs from 'fs';
+import topAccounts from '../input-data/ethscan-scrape-res.js';
+import tornadoWithdraws from '../input-data/tornado-withdraws.js';
 
 function searchAddressInFile(address, fileName) {
   let readFileToLookInto = fs.readFileSync(
@@ -9,20 +11,17 @@ function searchAddressInFile(address, fileName) {
 
   if (typeof address === 'string') {
     const index = arrayFromFileToLookInto.findIndex(
-      (item) => item.address === address,
+      (item) => item.address.toUpperCase() === address.toUpperCase(),
     );
     return { index: index, account: arrayFromFileToLookInto[index] };
   } else {
-    const res = address.map((address) =>
-      arrayFromFileToLookInto.findIndex((item) => item.address === address),
-    );
+    const res = address.map((account, index) => {
+      console.log(`${index} of ${address.length}`);
+      return arrayFromFileToLookInto.findIndex(
+        (item) => item.address.toUpperCase() === account.toUpperCase(),
+      );
+    });
     return { index: res.filter((item) => item !== -1) };
   }
 }
-
-console.log(
-  searchAddressInFile(
-    '0x1dcC7f61C24A91eb00E26A56730c0879c275958A',
-    'mergedData',
-  ),
-);
+console.log(searchAddressInFile(tornadoWithdraws, 'mergedData'));

@@ -19,9 +19,9 @@ describe('mergeData', () => {
     const total = Object.keys(
       JSON.parse(fs.readFileSync(`./src/merged-data/mergedData.json`, 'utf-8')),
     ).length;
-    console.log(lengthsSum);
-    console.log(total);
+    console.log('lengthsSum ', lengthsSum);
+    console.log('total ', total);
 
-    expect(lengthsSum.length).toBe(total.length);
+    expect(lengthsSum).toBe(total);
   });
 });
