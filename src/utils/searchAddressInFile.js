@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import topAccounts from '../input-data/ethscan-scrape-res.js';
+import topAccounts from '../input-data/scrape-nov-22.js';
 import tornadoWithdraws from '../input-data/tornado-withdraws.js';
 
 function searchAddressInFile(address, fileName) {
@@ -24,4 +24,4 @@ function searchAddressInFile(address, fileName) {
     return { index: res.filter((item) => item !== -1) };
   }
 }
-console.log(searchAddressInFile(tornadoWithdraws, 'mergedData'));
+console.log(searchAddressInFile(topAccounts, 'mergedData'));
