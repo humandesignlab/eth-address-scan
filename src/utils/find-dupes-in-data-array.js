@@ -1,3 +1,4 @@
+import bigList from "../input-data/hugeList.js";
 export default function findDupesInData(arr) {
   const duplicates = new Set();
 
@@ -10,3 +11,5 @@ export default function findDupesInData(arr) {
   });
   return result;
 }
+
+console.log(findDupesInData(bigList))

@@ -1,10 +1,10 @@
 import generateAccount from "./account-generator.js";
-import topAccounts from "../input-data/scrape-nov-22.js";
+import hugeList from "../input-data/hugeList.js";
 
 function guessAnAddress() {
   const topAccountsMap = new Map();
 
-  topAccounts.forEach((item, index) =>
+  hugeList.forEach((item, index) =>
     topAccountsMap.set(item.toLocaleUpperCase(), index)
   );
 

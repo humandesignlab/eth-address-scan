@@ -9,7 +9,7 @@ const targetSelectorGenesisAccounts =
   '#paywall_mask > table > tbody > tr > td > span > a';
 
 let accountsArrayjson = fs.readFileSync(
-  'src/input-data/scrape-nov-22.json',
+  'src/input-data/scrape-apr-23.json',
   'utf-8',
 );
 let result = JSON.parse(accountsArrayjson);
@@ -17,14 +17,14 @@ let result = JSON.parse(accountsArrayjson);
 async function scrape(route, query) {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
-  for (let i = 351; i <= 400; i++) {
+  for (let i =391; i <= 400; i++) {
     await page.goto(`https://etherscan.io/${route}${i}`);
     let addressesByPage = await page.evaluate(() =>
       Array.from(
         document.querySelectorAll(
-          '#ContentPlaceHolder1_divTable > table > tbody > tr > td > a',
+          '#ContentPlaceHolder1_divTable > table > tbody > tr > td > a:nth-of-type(2)',
         ),
-        (element) => element.textContent,
+        (element) => element.getAttribute('data-clipboard-text'),
       ),
     );
 
@@ -32,7 +32,7 @@ async function scrape(route, query) {
 
     accountsArrayjson = JSON.stringify(result);
     fs.writeFileSync(
-      'src/input-data/scrape-nov-22.json',
+      'src/input-data/scrape-apr-23.json',
       accountsArrayjson,
       'utf-8',
     );
@@ -40,4 +40,4 @@ async function scrape(route, query) {
   console.log(result);
   browser.close();
 }
-await scrape(routeTopAccounts);
+scrape(routeTopAccounts);
