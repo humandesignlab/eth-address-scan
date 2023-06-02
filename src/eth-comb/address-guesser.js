@@ -1,5 +1,5 @@
 import generateAccount from "./account-generator.js";
-import hugeList from "../input-data/hugeList.js";
+import hugeList from "../input-data/millionList.js";
 
 import * as fs from 'fs';
 let guessedJson = fs.readFileSync('./data/guessed.json', 'utf-8');
@@ -9,13 +9,13 @@ function guessAnAddress() {
   const topAccountsMap = new Map();
 
   hugeList.forEach((item, index) =>
-    topAccountsMap.set(item.toLocaleUpperCase(), index)
+    topAccountsMap.set(item.toUpperCase(), index)
   );
 
   for (let i = 1; i <= 500000000; i++) {
     let account = generateAccount();
 
-    // if (i === 4567) account.address = '0xa04d81f5c75cc159a72548caed8bb77192715bc8'
+    // if (i === 14567) account.address = '0xc960aaa543bdd8e6fe610cabae88016d4f9b9c40'
 
     if (topAccountsMap.has(account.address.toUpperCase())) {
       console.log({
@@ -37,7 +37,7 @@ function guessAnAddress() {
         index: topAccountsMap.get(account.address.toUpperCase()),
       };
     }
-    i % 1000 === 0 ? console.log(i, account.address) : null;
+    i % 10000 === 0 ? console.log(i, account.address) : null;
   }
 }
 guessAnAddress();

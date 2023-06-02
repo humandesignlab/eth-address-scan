@@ -1,4 +1,4 @@
-import bigList from "../input-data/hugeList.js";
+import bigList from "../input-data/millionList.js";
 export default function findDupesInData(arr) {
   const duplicates = new Set();
 
