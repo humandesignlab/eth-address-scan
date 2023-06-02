@@ -28,35 +28,29 @@ function guessAnAddress() {
     counter++;
     let randomAccount = generateRandomAccount();
     let incrementalAccount = generateIncrementalAccount(hexNumber);
-    // console.log('randomAccount ', randomAccount);
-    // console.log('-----------------------------------------');
-    // console.log('hexNumber: ', hexNumber);
-    // console.log('incrementalAccount ', incrementalAccount);
-    // console.log('-----------------------------------------');
 
-    // if (i === 4567) randomAccount.address = '0xa04d81f5c75cc159a72548caed8bb77192715bc8'
+    // if (counter === 4567) randomAccount.address = '0xa04d81f5c75cc159a72548caed8bb77192715bc8'
 
-    // if (topAccountsMap.has(randomAccount.address.toUpperCase())) {
-    //   console.log({
-    //     address: randomAccount.address,
-    //     pk: randomAccount.privateKey,
-    //     index: topAccountsMap.get(randomAccount.address.toUpperCase()),
-    //   });
-    //   guessed.push({
-    //     address: randomAccount.address,
-    //     pk: randomAccount.privateKey,
-    //     index: topAccountsMap.get(randomAccount.address.toUpperCase()),
-    //   });
-    //   guessedJson = JSON.stringify(guessed);
-    //   fs.writeFileSync('./data/guessed.json', guessedJson, 'utf-8');
+    if (topAccountsMap.has(randomAccount.address.toUpperCase())) {
+      console.log({
+        address: randomAccount.address,
+        pk: randomAccount.privateKey,
+        index: topAccountsMap.get(randomAccount.address.toUpperCase()),
+      });
+      guessed.push({
+        address: randomAccount.address,
+        pk: randomAccount.privateKey,
+        index: topAccountsMap.get(randomAccount.address.toUpperCase()),
+      });
+      guessedJson = JSON.stringify(guessed);
+      fs.writeFileSync('./data/guessed.json', guessedJson, 'utf-8');
 
-    //   return {
-    //     address: randomAccount.address,
-    //     pk: randomAccount.privateKey,
-    //     index: topAccountsMap.get(randomAccount.address.toUpperCase()),
-    //   };
-    // }
-    // i % 10000 === 0 ? console.log(i, randomAccount.address) : null;
+      return {
+        address: randomAccount.address,
+        pk: randomAccount.privateKey,
+        index: topAccountsMap.get(randomAccount.address.toUpperCase()),
+      };
+    }
 
     if (topAccountsMap.has(incrementalAccount.address.toUpperCase())) {
       console.log({
@@ -78,9 +72,17 @@ function guessAnAddress() {
         index: topAccountsMap.get(incrementalAccount.address.toUpperCase()),
       };
     }
-    counter % 10000 === 0
-      ? console.log(counter, incrementalAccount.address)
-      : null;
+    if (counter % 10000 === 0) {
+      console.log(counter);
+      console.log('randomAccount.privateKey:      ', randomAccount.privateKey);
+      console.log(
+        'incrementalAccount.privateKey: ',
+        incrementalAccount.privateKey
+      );
+      console.log(
+        '---------------------------------------------------------------------'
+      );
+    }
   }
 }
 guessAnAddress();
