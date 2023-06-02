@@ -1,0 +1,43 @@
+import { generateRandomAccount } from './account-generator.js';
+import hugeList from '../input-data/hugeList.js';
+
+import * as fs from 'fs';
+let guessedJson = fs.readFileSync('./data/guessed.json', 'utf-8');
+let guessed = JSON.parse(guessedJson);
+
+function guessAnAddress() {
+  const topAccountsMap = new Map();
+
+  hugeList.forEach((item, index) =>
+    topAccountsMap.set(item.toLocaleUpperCase(), index)
+  );
+
+  for (let i = 1; i <= 500000000; i++) {
+    let randomAccount = generateRandomAccount();
+
+    // if (i === 4567) randomAccount.address = '0xa04d81f5c75cc159a72548caed8bb77192715bc8'
+
+    if (topAccountsMap.has(randomAccount.address.toUpperCase())) {
+      console.log({
+        address: randomAccount.address,
+        pk: randomAccount.privateKey,
+        index: topAccountsMap.get(randomAccount.address.toUpperCase()),
+      });
+      guessed.push({
+        address: randomAccount.address,
+        pk: randomAccount.privateKey,
+        index: topAccountsMap.get(randomAccount.address.toUpperCase()),
+      });
+      guessedJson = JSON.stringify(guessed);
+      fs.writeFileSync('./data/guessed.json', guessedJson, 'utf-8');
+
+      return {
+        address: randomAccount.address,
+        pk: randomAccount.privateKey,
+        index: topAccountsMap.get(randomAccount.address.toUpperCase()),
+      };
+    }
+    i % 10000 === 0 ? console.log(i, randomAccount.address) : null;
+  }
+}
+guessAnAddress();
